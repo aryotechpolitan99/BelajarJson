@@ -33,7 +33,7 @@ public class AdapterProduk extends RecyclerView.Adapter<AdapterProduk.MyViewHold
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.daftar_product, parent, false);
+        View view = inflater.inflate(R.layout.list_product, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -41,7 +41,7 @@ public class AdapterProduk extends RecyclerView.Adapter<AdapterProduk.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.tvName.setText(products.get(position).getProductNama());
-        holder.tvMerch.setText(products.get(position).getProductQty());
+        holder.tvMerch.setText(products.get(position).getMerchants().getMerchantName());
 
         String baseUrl = "http://192.168.6.221:81/storage/";
         String url = baseUrl+products.get(position).getProductImage();
@@ -78,6 +78,7 @@ public class AdapterProduk extends RecyclerView.Adapter<AdapterProduk.MyViewHold
             tvName = itemView.findViewById(R.id.tv_nm_prod);
             iv = itemView.findViewById(R.id.img_list);
             tvMerch = itemView.findViewById(R.id.tv2_merch);
+            ivProductImage = itemView.findViewById(R.id.img_list);
         }
     }
 

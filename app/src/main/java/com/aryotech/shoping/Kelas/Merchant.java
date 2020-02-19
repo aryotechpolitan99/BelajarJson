@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class Merchant implements Parcelable {
 
-    private int merchantId;
+    private long merchantId;
     private String merchantName;
     private String merchantSLug;
 
@@ -16,7 +16,7 @@ public class Merchant implements Parcelable {
         this.merchantSLug = merchantSLug;
     }
 
-    public int getMerchantId() {
+    public long getMerchantId() {
         return merchantId;
     }
 
@@ -36,7 +36,7 @@ public class Merchant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.merchantId);
+        dest.writeLong(this.merchantId);
         dest.writeString(this.merchantName);
         dest.writeString(this.merchantSLug);
     }

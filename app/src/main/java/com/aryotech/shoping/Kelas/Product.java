@@ -4,16 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Product implements Parcelable {
-    private int productId;
+    private long productId;
     private String productNama;
     private String productSlug;
-    private int productQty;
+    private long productQty;
     private String productImage;
     private Merchant merchants;
     private Category categories;
 
-    public Product (long productId, String productNama, String productSlug, String productQty, int productImage, Merchant merchants, Category categories){
-
+    public Product(long productId, String productNama, String productSlug, long productQty, String productImage, Merchant merchants, Category categories) {
         this.productId = productId;
         this.productNama = productNama;
         this.productSlug = productSlug;
@@ -23,7 +22,7 @@ public class Product implements Parcelable {
         this.categories = categories;
     }
 
-    public int getProductId() {
+    public long getProductId() {
         return productId;
     }
 
@@ -35,7 +34,7 @@ public class Product implements Parcelable {
         return productSlug;
     }
 
-    public int getProductQty() {
+    public long getProductQty() {
         return productQty;
     }
 
@@ -51,6 +50,10 @@ public class Product implements Parcelable {
         return categories;
     }
 
+    public static Creator<Product> getCREATOR() {
+        return CREATOR;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -58,10 +61,10 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.productId);
+        dest.writeLong(this.productId);
         dest.writeString(this.productNama);
         dest.writeString(this.productSlug);
-        dest.writeInt(this.productQty);
+        dest.writeLong(this.productQty);
         dest.writeString(this.productImage);
         dest.writeParcelable(this.merchants, flags);
         dest.writeParcelable(this.categories, flags);

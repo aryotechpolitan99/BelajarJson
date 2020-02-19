@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class AsyncTask  extends android.os.AsyncTask<InputStream, Void, ArrayList<Product>> {
+public class AsyncTask  extends android.os.AsyncTask<String, Void, ArrayList<Product>> {
 
     WeakReference<AdapterProduk> adapterProduk;
     Context context;
@@ -33,7 +33,7 @@ public class AsyncTask  extends android.os.AsyncTask<InputStream, Void, ArrayLis
     }
 
     @Override
-    protected ArrayList<Product> doInBackground(InputStream... url) {
+    protected ArrayList<Product> doInBackground(String... url) {
 
         ArrayList<Product> produk = new ArrayList<>();
         String json = loadJsonFromApi(url[0]);
@@ -104,7 +104,7 @@ public class AsyncTask  extends android.os.AsyncTask<InputStream, Void, ArrayLis
                 String productName = product.getString("productName");
                 String productSlug = product.getString("productSlug");
                 String productImage = product.getString("productImage");
-                int productQty = product.getInt("productQty");
+                long productQty = product.getLong("productQty");
                 JSONObject merchant = product.getJSONObject("merchant");
                 JSONObject category = product.getJSONObject("category");
 
@@ -119,7 +119,7 @@ public class AsyncTask  extends android.os.AsyncTask<InputStream, Void, ArrayLis
 
                 Merchant merchantObj = new Merchant(merchantId,merchantName,merchantSlug);
 
-                productObj = new Product(productId,productName,productSlug,productImage,productQty,merchantObj,categoryObj);
+                productObj = new Product(productId,productName,productSlug,productQty,productImage,merchantObj,categoryObj);
                 products.add(productObj);
             }
 

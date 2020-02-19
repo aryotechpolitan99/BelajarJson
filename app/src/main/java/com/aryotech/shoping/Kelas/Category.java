@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class Category implements Parcelable {
 
-    private int categoryId;
+    private long categoryId;
     private String categoryName;
 
     public Category (long categoryId, String categoryName){
@@ -14,7 +14,7 @@ public class Category implements Parcelable {
         this.categoryName = categoryName;
     }
 
-    public int getCategoryId() {
+    public long getCategoryId() {
         return categoryId;
     }
 
@@ -30,7 +30,7 @@ public class Category implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.categoryId);
+        dest.writeLong(this.categoryId);
         dest.writeString(this.categoryName);
     }
 

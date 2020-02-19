@@ -1,6 +1,7 @@
 package com.aryotech.shoping;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,29 +21,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        inisialKomponen();
-        generateAdapter();
-        getData();
-    }
-
-    public void inisialKomponen(){
-
         recyclerView = findViewById(R.id.rv_home);
-    }
+        adapterProduk = new AdapterProduk(this);
 
-    public void generateAdapter(){
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterProduk);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        String url = "http://192.168.6.221:81/api/products";
+        new AsyncTask(this,adapterProduk).execute(url);
     }
 
-    public void getData(){
-        InputStream jsonFile = getResources().openRawResource(R.raw.data);
-        AsyncTask asyncTask = new AsyncTask(getApplicationContext(), adapterProduk);
-        asyncTask.execute(jsonFile);
 
-
-    }
 
 }
