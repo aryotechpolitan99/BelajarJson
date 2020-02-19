@@ -71,10 +71,10 @@ public class Product implements Parcelable {
     }
 
     protected Product(Parcel in) {
-        this.productId = in.readInt();
+        this.productId = in.readLong();
         this.productNama = in.readString();
         this.productSlug = in.readString();
-        this.productQty = in.readInt();
+        this.productQty = in.readLong();
         this.productImage = in.readString();
         this.merchants = in.readParcelable(Merchant.class.getClassLoader());
         this.categories = in.readParcelable(Category.class.getClassLoader());

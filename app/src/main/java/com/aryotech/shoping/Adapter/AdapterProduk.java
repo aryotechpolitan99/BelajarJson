@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,14 +49,13 @@ public class AdapterProduk extends RecyclerView.Adapter<AdapterProduk.MyViewHold
         Glide.with(context)
                 .load(url)
                 .into(holder.ivProductImage);
-        holder.iv.setOnClickListener(new View.OnClickListener() {
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(context, DetailProduk.class);
-                intent.putExtra("data", products.get(position));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                Intent listproduk = new Intent(context,DetailProduk.class);
+                listproduk.putExtra("detailprod", products.get(position));
+                context.startActivity(listproduk);
             }
         });
     }
@@ -71,6 +71,7 @@ public class AdapterProduk extends RecyclerView.Adapter<AdapterProduk.MyViewHold
         public ImageView ivProductImage;
         private TextView tvName, tvMerch;
         private ImageView iv;
+        private LinearLayout linearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +80,7 @@ public class AdapterProduk extends RecyclerView.Adapter<AdapterProduk.MyViewHold
             iv = itemView.findViewById(R.id.img_list);
             tvMerch = itemView.findViewById(R.id.tv2_merch);
             ivProductImage = itemView.findViewById(R.id.img_list);
+            linearLayout = itemView.findViewById(R.id.list_produk);
         }
     }
 

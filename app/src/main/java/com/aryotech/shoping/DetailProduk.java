@@ -19,10 +19,9 @@ public class DetailProduk extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_produk);
 
-        Product product = getIntent().getParcelableExtra("data");
+        Product product = getIntent().getParcelableExtra("detailprod");
         inisialisasi();
 
-        Glide.with(this).load(product.getProductImage()).into(img);
         tvIdProd.setText("Id Product        :   "+String.valueOf(product.getProductId()));
         tvNmProd.setText("Name Product      :   "+product.getProductNama());
         tvSlugProd.setText("Slug Product        :   "+product.getProductSlug());
@@ -32,6 +31,10 @@ public class DetailProduk extends AppCompatActivity {
         tvSlugMerch.setText("Slug Merchant      :   "+product.getMerchants().getMerchantSLug());
         tvIdCat.setText("Id Category        :   "+String.valueOf(product.getCategories().getCategoryId()));
         tvNmCat.setText("Name Category      :   "+product.getCategories().getCategoryName());
+
+        String baseUrl = "http://192.168.6.221:81/storage/";
+        String url = baseUrl+product.getProductImage();
+        Glide.with(this).load(url).into(img);
     }
 
     public void inisialisasi(){

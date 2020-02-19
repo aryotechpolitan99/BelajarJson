@@ -35,7 +35,7 @@ public class Category implements Parcelable {
     }
 
     protected Category(Parcel in) {
-        this.categoryId = in.readInt();
+        this.categoryId = in.readLong();
         this.categoryName = in.readString();
     }
 

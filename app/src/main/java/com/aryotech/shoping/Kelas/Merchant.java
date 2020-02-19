@@ -42,7 +42,7 @@ public class Merchant implements Parcelable {
     }
 
     protected Merchant(Parcel in) {
-        this.merchantId = in.readInt();
+        this.merchantId = in.readLong();
         this.merchantName = in.readString();
         this.merchantSLug = in.readString();
     }
